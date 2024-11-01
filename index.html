@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Gerenciamento de Projetos</h1>
+    <div id="box">
+        
+    </div>
+</body>
+    <script>
+        async function grabit() {
+            const resposta = await fetch("http://localhost:3031/mostrar");
+            const tabela = await resposta.json();
+
+            
+            const div = document.getElementById("box");
+            div.innerHTML = "";
+            
+            tabela.forEach((linha) => {
+                div.innerHTML = `<table>
+  <tr>
+    <th>Nome</th>
+    <td>${linha.nome}</td>
+  </tr>
+  <tr>
+    <th>Descrição</th>
+    <td>${linha.descricao}</td>
+  </tr>
+  <tr>
+    <th>Data</th>
+    <td>${linha.data}</td>
+  </tr>
+  <tr>
+    <th>Funcionários</th>
+    <td>${linha.funcionarios}</td>
+  </tr>
+
+</table</p>`
+            });
+        };
+        grabit();
+    </script>
+</html>
